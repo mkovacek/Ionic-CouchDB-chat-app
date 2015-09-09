@@ -1,0 +1,30 @@
+<div name="login" ng-hide="ac.showForm()" overflow-scroll="false">
+    <div class="row responsive-sm">
+        <div class="col centerLogo">
+            <img src="img/login.png" class="centerLogo-item">
+        </div>
+    </div>
+    <form name="loginForm" novalidate>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label light-border light-bg">
+                <span class="input-label">Phone number</span>
+                <input type="tel" international-phone-number  nationalMode="true"  responsiveDropdown="true"  default-country="hr" ng-model="ac.loginData.phone" placeholder="Phone number" id="loginPhone" name="phone" required >
+                <br>
+                <span ng-show="loginForm.$submitted && loginForm.phone.$error.required " class="errorMsg"> Please input your phone number. </span>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label light-border light">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="Password" name="password" ng-model="ac.loginData.password" required>
+                <span ng-show="loginForm.$submitted && loginForm.password.$error.required" class="errorMsg"> Please input your password. </span>
+            </label>
+        </div>
+        <div class="padding">
+            <div class="button-bar">
+                <button class="button button-light" ng-click="ac.signIn(loginForm.$valid)">Sign In</button>
+                <a class="button button-light" ng-click="ac.on()">Sign Up</a>
+            </div>
+        </div>
+    </form>
+</div>

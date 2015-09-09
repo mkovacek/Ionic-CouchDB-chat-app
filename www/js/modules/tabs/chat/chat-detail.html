@@ -1,0 +1,40 @@
+//cache-view="false" u ion-viewu
+<ion-view id="userMessagesView">
+  <ion-nav-title>
+    <i class='icon ion-chatbubble light user-messages-top-icon'></i> <div class='msg-header-username'>{{detCtrl.recipient.firstName}} {{detCtrl.recipient.lastName}}</div>
+  </ion-nav-title>
+
+  <ion-content has-bouncing="true" class="has-header has-footer" delegate-handle="userMessageScroll">
+    <div ng-repeat="message in detCtrl.messages.messages track by $index" class="message-wrapper">
+      <div ng-if="detCtrl.sender.id != message.user">
+        <ng-letter-avatar data="{{detCtrl.recipient.firstName.charAt(0)}}{{detCtrl.recipient.lastName.charAt(0)}}" charCount="2" shape="round" klass="profile-pic left"></ng-letter-avatar>
+        <div class="chat-bubble left">
+          <p class="message">{{message.msg}}</p>
+          <p am-time-ago="message.sendTime" class="timeText left"></p>
+        </div>
+      </div>
+
+      <div ng-if="detCtrl.sender.id == message.user">
+        <ng-letter-avatar data="{{detCtrl.sender.firstName.charAt(0)}}{{detCtrl.sender.lastName.charAt(0)}}" charCount="2" shape="round" klass="profile-pic right"></ng-letter-avatar>
+        <div class="chat-bubble right">
+          <p class="message">{{message.msg}}</p>
+          <p am-time-ago="message.sendTime" class="timeText right"></p>
+        </div>
+      </div>
+
+      <div class="cf"></div>
+    </div>
+  </ion-content>
+
+  <form name="sendMessageForm" ng-submit="detCtrl.sendMessage()" novalidate>
+    <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+      <label class="item-input-wrapper">
+        <textarea ng-model="detCtrl.inputMessage" value="" required minlength="1" maxlength="1500" msd-elastic></textarea>
+      </label>
+      <div class="footer-btn-wrap">
+        <button class="button button-icon icon ion-android-send footer-btn" type="submit" ng-disabled="!detCtrl.inputMessage || detCtrl.inputMessage === ''"></button>
+      </div>
+    </ion-footer-bar>
+  </form>
+
+</ion-view>

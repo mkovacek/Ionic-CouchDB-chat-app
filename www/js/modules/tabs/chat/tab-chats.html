@@ -1,0 +1,27 @@
+<ion-view view-title="Chats">
+  <ion-content overflow-scroll="true">
+    <ion-list>
+      <div ng-if="cCtrl.chats.length==0">
+        <div class="card">
+          <div class="item item-text-wrap">You don't have chat messages.</div>
+        </div>
+      </div>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in cCtrl.chats | orderBy: '-lastMsgTime' track by $index"
+                type="item-text-wrap" href="#/tab/chats/{{chat._id}}"  ng-click="chat.newMsg=false">
+        <ng-letter-avatar data="{{chat[chat.sender].firstName.charAt(0)}}{{chat[chat.sender].lastName.charAt(0)}}" charCount="2" shape="round" class="item-avatar" klass="topMargin"></ng-letter-avatar>
+        <div ng-if="chat.newMsg">
+          <h2><b>{{chat[chat.sender].firstName}} {{chat[chat.sender].lastName}}</b></h2>
+          <p><b>{{chat.lastMsg}}</b></p>
+          <p am-time-ago="chat.lastMsgTime" class="timeText right"></p>
+          <i class="icon ion-ios-chatbubble assertive"></i>
+        </div>
+        <div ng-if="chat.newMsg==undefined">
+          <h2>{{chat[chat.sender].firstName}} {{chat[chat.sender].lastName}}</h2>
+          <p>{{chat.lastMsg}}</p>
+          <p am-time-ago="chat.lastMsgTime" class="timeText right"></p>
+          <i class="icon ion-ios-chatbubble-outline assertive"></i>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

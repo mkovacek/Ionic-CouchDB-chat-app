@@ -1,0 +1,18 @@
+<ion-view view-title="Friends">
+  <ion-content overflow-scroll="true">
+    <ion-list>
+      <div ng-if="conCtrl.contacts.length==0">
+        <div class="card">
+          <div class="item item-text-wrap">None of your friends currently use this app.</div>
+        </div>
+      </div>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="contact in conCtrl.contacts | orderBy: ['firstName','lastName'] track by $index "
+                type="item-text-wrap" ng-init="contact.chatId=conCtrl.conversationId(contact.phone)"
+                href="#/tab/contacts/chats/{{contact.chatId}}">
+        <ng-letter-avatar data="{{contact.firstName.charAt(0)}}{{contact.lastName.charAt(0)}}" charCount="2" shape="round" class="item-avatar"></ng-letter-avatar>
+        <h2>{{contact.firstName}} {{contact.lastName}}</h2>
+        <i class="icon ion-ios-plus assertive"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

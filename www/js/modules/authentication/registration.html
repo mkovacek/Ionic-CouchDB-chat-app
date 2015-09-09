@@ -1,0 +1,47 @@
+<div name="registration" ng-show="ac.showForm()">
+    <form name="registrationForm" novalidate>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">First name</span>
+                <input type="text" placeholder="First Name" name="fName" ng-model="ac.regData.firstName" required>
+                <span ng-show="registrationForm.$submitted && registrationForm.fName.$error.required" class="errorMsg"> Please input your name. </span>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Last name</span>
+                <input type="text" placeholder="Last Name" name="lName" ng-model="ac.regData.lastName" required>
+                <span ng-show="registrationForm.$submitted && registrationForm.lName.$error.required"  class="errorMsg"> Please input your surname. </span>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Phone number</span>
+                <input type="tel" international-phone-number  nationalMode="true"  responsiveDropdown="true"  default-country="hr" ng-model="ac.regData.phone" placeholder="Phone number" id="regPhone" name="phone" required  utils-script="lib/intl-tel-input/lib/libphonenumber/build/utils.js" >
+                <br>
+                <span ng-show="registrationForm.$submitted && registrationForm.phone.$error.required" class="errorMsg"> Please input your phone number. </span>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="Password" name="pass" ng-model="ac.regData.password" required>
+                <span ng-show="registrationForm.$submitted && registrationForm.pass.$error.required" class="errorMsg"> Please input your password. </span>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Repeat password</span>
+                <input type="password" placeholder="Repeat password" name="rPass" ng-model="ac.repeatedPassword" required>
+                <span ng-show="registrationForm.$submitted && registrationForm.rPass.$error.required" class="errorMsg"> Please repeat password. </span>
+                <span ng-show="registrationForm.$submitted && ac.regData.password!=ac.repeatedPassword && ac.repeatedPassword!=null" class="errorMsg"> Passwords are not the same. </span>
+            </label>
+        </div>
+        <div class="padding">
+            <div class="button-bar">
+                <button class="button button-block button-light" ng-click="ac.signUp(registrationForm.$valid)">Sign Up</button>
+                <a class="button button-block button-light" ng-click="ac.off()">Sign In</a>
+            </div>
+        </div>
+    </form>
+</div>
