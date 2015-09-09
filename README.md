@@ -2,7 +2,7 @@
 
 <b>Used technologies:</b> Ionic, Angular, Cordova, CouchDB, PouchDB<br><br>
 <b>Description:</b><br>
-Simple chat mobile app, WhatsApp lite version<br>
+Simple chat mobile app, like whatsApp lite version<br>
 
 
 
